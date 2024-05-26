@@ -135,7 +135,7 @@ if (chislo_oshibok_sinapsov!=0 || chislo_oshibok_neyronov!=0) // если ест
   // Остановить выполнение программы
   {
     exit(EXIT_SUCCESS); 
-  std::cout << "Программа остановлена. Ошибки в форматах синапсов или нейронов."<< chislo_oshibok_sinapsov<< std::endl;  
+  std::cout << "Программа остановлена. Ошибки в форматах синапсов или нейронов."<< std::endl;  
 }
 //########################################################################################################
 //########################################################################################################             
@@ -167,13 +167,16 @@ list_of_neurons->at(200)=list_of_neurons->at(200)+  (list_of_neurons->at(neuron_
     {
         ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это 1.");
         Odin_Programmi=true;
+        // std::cout << "Программа остановлена. Ошибки в форматах синапсов или нейронов."<< std::endl;  
     }
-                           else {
+                  //         else
+                      if   (list_of_neurons->at(200)>=0)
+                            {
         ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это не 1.");
           Odin_Programmi=false;
     }
 //########################################################################################################
-
+ std::cout << "list_of_neurons->at(200) = "<< list_of_neurons->at(200)<< std::endl;  
 
 
 
@@ -198,7 +201,7 @@ void Dialog::on_pushButton_clicked()
         // cycle_of_distinguishing_a_one_with_vectors_GUI
         QProcess::startDetached(
           
-"/home/viktor/my_projects_qt_2_build/build-cycle_of_distinguishing_a_one_with_vectors_GUI_2-Desktop_Qt_5_12_12_GCC_64bit-Debug/cycle_of_distinguishing_a_one_with_vectors_GUI_2"
+"/home/viktor/my_projects_qt_2_build/build-cycle_of_distinguishing_a_one_with_vectors_GUI_3-Desktop_Qt_5_12_12_GCC_64bit-Debug/cycle_of_distinguishing_a_one_with_vectors_GUI_3"
                                 , qApp->arguments());  
 //   qApp->quit();
     }
