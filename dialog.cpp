@@ -10,6 +10,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <memory> // Для std::unique_ptr
+#include <QProcess>
 //########################################################################################################
 // Реализация make_unique для C++11
 namespace std {
@@ -111,7 +112,7 @@ Nazvaniye_fayla_s_neyronami_i_signalom = QFileDialog::getOpenFileName(this,
 //        qDebug() << "Значение:" << value;
     } else {
 //        qDebug() << "Ошибка преобразования в long long:";
-//        qDebug() << "Строка не является числовой, или значение выходит за пределы long long";
+      qDebug() << "Строка не является числовой, или значение выходит за пределы long long: "<< line ;
           chislo_oshibok_sinapsov++;
     }
 
@@ -136,9 +137,42 @@ if (chislo_oshibok_sinapsov!=0 || chislo_oshibok_neyronov!=0) // если ест
     exit(EXIT_SUCCESS); 
   std::cout << "Программа остановлена. Ошибки в форматах синапсов или нейронов."<< chislo_oshibok_sinapsov<< std::endl;  
 }
+//########################################################################################################
+//########################################################################################################             
+// блок вычисления-решения 200 нейрона
+   for ( var = 100; var < 200; ++var) // This is the range of neurons
+    {
+        for (int neuron_index = 0, synapse_index = 0;   neuron_index < 200, synapse_index < 10100;   ++neuron_index, synapse_index = synapse_index + 100)
 
+        {
+ // list_of_synapses->at(i)
+list_of_neurons->at(var)=list_of_neurons->at(var)+  (list_of_neurons->at(neuron_index)/ list_of_synapses->at(synapse_index)); 
 
+//              });
+        } // вычитаем нейроны
+    }
+//########################################################################################################
+    for (int   neuron_index = 100, synapse_index = 10000; neuron_index < 200;   ++neuron_index, ++synapse_index)
+    {
 
+  // list_of_neurons[200] = list_of_neurons[200] + (list_of_neurons[neuron_index] / list_of_synapses[synapse_index]); // + на -
+list_of_neurons->at(200)=list_of_neurons->at(200)+  (list_of_neurons->at(neuron_index)/ list_of_synapses->at(synapse_index)); 
+    }
+//########################################################################################################
+/////////////   показываем что определила программа
+    if 
+      //  ( variable_error <=0)
+        (list_of_neurons->at(200)<0)
+
+    {
+        ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это 1.");
+        Odin_Programmi=true;
+    }
+                           else {
+        ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это не 1.");
+          Odin_Programmi=false;
+    }
+//########################################################################################################
 
 
 
@@ -152,5 +186,31 @@ if (chislo_oshibok_sinapsov!=0 || chislo_oshibok_neyronov!=0) // если ест
 Dialog::~Dialog()
 {
     delete ui;
+}
+
+
+void Dialog::on_pushButton_clicked()
+{
+    // выбор программы обучения:
+    if ( Odin_Programmi==false) // Если не распознана 1:
+    {
+        Odin_Uchitelia=true; ui->label_2->setText ("Odin_Programmi==false; Odin_Uchitelia=true");
+        // cycle_of_distinguishing_a_one_with_vectors_GUI
+        QProcess::startDetached(
+          
+"/home/viktor/my_projects_qt_2_build/build-cycle_of_distinguishing_a_one_with_vectors_GUI_2-Desktop_Qt_5_12_12_GCC_64bit-Debug/cycle_of_distinguishing_a_one_with_vectors_GUI_2"
+                                , qApp->arguments());  
+//   qApp->quit();
+    }
+    else // Если не распознана не 1:
+    {
+        Odin_Uchitelia=false;  ui->label_2->setText ("Odin_Programmi==true; Odin_Uchitelia=false");
+        // bez_1
+        QProcess::startDetached(
+
+           "/home/viktor/my_projects_qt_2_build/build-bez_1_GUI_3-Desktop_Qt_5_12_12_GCC_64bit-Release/bez_1_GUI_3"
+            , qApp->arguments());  
+ //          qApp->quit();
+    } 
 }
 
