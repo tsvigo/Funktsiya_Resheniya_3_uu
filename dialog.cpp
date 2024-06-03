@@ -42,7 +42,7 @@ Dialog::Dialog(QWidget *parent)
    if (Nazvaniye_fayla_s_neyronami_i_signalom=="")
    {
 Nazvaniye_fayla_s_neyronami_i_signalom = QFileDialog::getOpenFileName(this,
-              tr("Open txt"), "/home/viktor/my_projects_qt_2/Sgenerirovannye_fayly/", tr("Txt Files (*.txt)"));
+              tr("Open txt"), "/home/viktor/Загрузки/Data/Images/chars74k_png_Fnt_Sample1_black-white/300/txt/", tr("Txt Files (*.txt)"));
    }           
 //########################################################################################################
 // читаем нейроны в вектор
