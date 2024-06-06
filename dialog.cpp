@@ -207,7 +207,7 @@ void Dialog::on_pushButton_clicked()
         // cycle_of_distinguishing_a_one_with_vectors_GUI
         QProcess::startDetached(
           
-"/home/viktor/my_projects_qt_2_build/build-cycle_of_distinguishing_a_one_with_vectors_GUI_3-Desktop_Qt_5_12_12_GCC_64bit-Debug/cycle_of_distinguishing_a_one_with_vectors_GUI_3"
+"/home/viktor/my_projects_qt_2_build/build-cycle_of_distinguishing_a_one_with_vectors_GUI_2_uu-Desktop_Qt_5_12_12_GCC_64bit-Release/cycle_of_distinguishing_a_one_with_vectors_GUI_2_uu"
                                 , qApp->arguments());  
 //   qApp->quit();
     }
