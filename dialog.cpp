@@ -146,7 +146,10 @@ if (chislo_oshibok_sinapsov!=0 || chislo_oshibok_neyronov!=0) // если ест
 
         {
  // list_of_synapses->at(i)
-list_of_neurons->at(var)=list_of_neurons->at(var)+  (list_of_neurons->at(neuron_index)/ list_of_synapses->at(synapse_index)); 
+list_of_neurons->at(var)=list_of_neurons->at(var)+  (list_of_neurons->at(neuron_index)
+                                                //     /
+                                                     -
+                                                     list_of_synapses->at(synapse_index));
 
 //              });
         } // вычитаем нейроны
@@ -156,7 +159,10 @@ list_of_neurons->at(var)=list_of_neurons->at(var)+  (list_of_neurons->at(neuron_
     {
 
   // list_of_neurons[200] = list_of_neurons[200] + (list_of_neurons[neuron_index] / list_of_synapses[synapse_index]); // + на -
-list_of_neurons->at(200)=list_of_neurons->at(200)+  (list_of_neurons->at(neuron_index)/ list_of_synapses->at(synapse_index)); 
+list_of_neurons->at(200)=list_of_neurons->at(200)+  (list_of_neurons->at(neuron_index)
+                                           //          /
+                                                     -
+                                                     list_of_synapses->at(synapse_index));
     }
 //########################################################################################################
 /////////////   показываем что определила программа
