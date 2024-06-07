@@ -38,11 +38,11 @@ Dialog::Dialog(QWidget *parent)
     std::cout << "Funktsiya_Resheniya_3_uu"<< std::endl;  
 //########################################################################################################   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Открываем файл для решения
-
+// Диалог открытия файла
    if (Nazvaniye_fayla_s_neyronami_i_signalom=="")
    {
 Nazvaniye_fayla_s_neyronami_i_signalom = QFileDialog::getOpenFileName(this,
-              tr("Open txt"), "/home/viktor/Загрузки/Data/Images/chars74k_png_Fnt_Sample1_black-white/300/txt/", tr("Txt Files (*.txt)"));
+              tr("Open txt"), "/home/viktor/Загрузки/data/none/300/masshtab/black-white/", tr("Txt Files (*.txt)"));
    }           
 //########################################################################################################
 // читаем нейроны в вектор
@@ -217,7 +217,7 @@ void Dialog::on_pushButton_clicked()
         // bez_1
         QProcess::startDetached(
 
-           "/home/viktor/my_projects_qt_2_build/build-bez_1_GUI_3-Desktop_Qt_5_12_12_GCC_64bit-Release/bez_1_GUI_3"
+           "/home/viktor/my_projects_qt_2_build/build-bez_1_GUI_3_uu-Desktop_Qt_5_12_12_GCC_64bit-Release/bez_1_GUI_3_uu"
             , qApp->arguments());  
  //          qApp->quit();
     } 
