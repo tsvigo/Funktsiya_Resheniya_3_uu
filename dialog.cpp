@@ -28,6 +28,7 @@ QString  Nazvaniye_fayla_s_neyronami_i_signalom="";
 bool Odin_Uchitelia;
 bool Odin_Programmi;
 int var ;
+ int neuron_index = 0, synapse_index = 0;
 //########################################################################################################
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent)
@@ -91,6 +92,7 @@ Nazvaniye_fayla_s_neyronami_i_signalom = QFileDialog::getOpenFileName(this,
  int chislo_oshibok_sinapsov=0;
    std::cout << "читаем синапсы в вектор"<< std::endl;  
     QFile file2("/home/viktor/my_projects_qt_2/Funktsiya_Resheniya_2/synapses.txt");
+    //           /home/viktor/my_projects_qt_2/Funktsiya_Resheniya_2/synapses.txt
     if (!file2.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть файл!";
            }
@@ -140,30 +142,105 @@ if (chislo_oshibok_sinapsov!=0 || chislo_oshibok_neyronov!=0) // если ест
 //########################################################################################################
 //########################################################################################################             
 // блок вычисления-решения 200 нейрона
-   for ( var = 100; var < 200; ++var) // This is the range of neurons
-    {
-        for (int neuron_index = 0, synapse_index = 0;   neuron_index < 200, synapse_index < 10100;   ++neuron_index, synapse_index = synapse_index + 100)
+//###########################################################################//###########################################################################
+//###########################################################################//###########################################################################
 
-        {
- // list_of_synapses->at(i)
-list_of_neurons->at(var)=list_of_neurons->at(var)+  (list_of_neurons->at(neuron_index)
-                                                //     /
-                                                     -
-                                                     list_of_synapses->at(synapse_index));
+//   for ( var = 100; var < 200; ++var) // This is the range of neurons
+//    {
+//        for (int neuron_index = 0, synapse_index = 0;   neuron_index < 200, synapse_index < 10100;
+//             ++neuron_index, synapse_index = synapse_index + 100)
 
-//              });
-        } // вычитаем нейроны
-    }
-//########################################################################################################
-    for (int   neuron_index = 100, synapse_index = 10000; neuron_index < 200;   ++neuron_index, ++synapse_index)
-    {
+//        {
+// // list_of_synapses->at(i)
+//   list_of_neurons->at(var)
+//        =
+//        list_of_neurons->at(var)
+//        +
+//        (list_of_neurons->at(neuron_index)
+//                                                //     /
+//                           -
+//            list_of_synapses->at(synapse_index));
 
-  // list_of_neurons[200] = list_of_neurons[200] + (list_of_neurons[neuron_index] / list_of_synapses[synapse_index]); // + на -
-list_of_neurons->at(200)=list_of_neurons->at(200)+  (list_of_neurons->at(neuron_index)
-                                           //          /
-                                                     -
-                                                     list_of_synapses->at(synapse_index));
-    }
+////              });
+//        } // вычитаем синапсы
+//    }
+////########################################################################################################
+//    for (int   neuron_index = 100, synapse_index = 10000; neuron_index < 200;   ++neuron_index, ++synapse_index)
+//    {
+
+//  // list_of_neurons[200] = list_of_neurons[200] + (list_of_neurons[neuron_index] / list_of_synapses[synapse_index]); // + на -
+// list_of_neurons->at(200)
+//        =
+//        list_of_neurons->at(200)
+//        +
+//        (list_of_neurons->at(neuron_index)
+//                                           //          /
+//                  -
+//           list_of_synapses->at(synapse_index));
+//    }
+//###########################################################################//###########################################################################
+//###########################################################################//###########################################################################
+// проверка
+for ( var = 100;              // первый for
+var < 200
+
+ ; ++var) // This is the range of neurons
+
+{
+//    if (list_of_neurons->at(200)<0) break;
+    for ( neuron_index = 0, synapse_index = 0;
+
+      /*,*/ synapse_index < 10100;
+        ++neuron_index, synapse_index = synapse_index + 100)
+
+    { // // ошибка сегментации
+
+
+    if (neuron_index < 200)
+
+        list_of_neurons->at(var)
+//###########################################################################
+                =
+                list_of_neurons->at(var) //-5310911
+        +
+                (
+                (list_of_neurons->at(neuron_index)
+          //  /   // деление
+                 -
+         list_of_synapses->at(synapse_index))
+                    )
+                    ; // + на -
+
+    } //
+  //  if       (list_of_neurons->at(200)<0) goto d;
+}
+//////////////////////
+for (int   neuron_index = 100, synapse_index = 10000;       // второй for
+
+synapse_index < 10100
+;
+  ++neuron_index, ++synapse_index)
+{
+
+//      if (list_of_synapses->at(synapse_index)!=0)
+    list_of_neurons->at(200)
+//###########################################################################
+            =
+            list_of_neurons->at(200) //-5310911
+    +
+            (
+            (list_of_neurons->at(neuron_index)
+           //  / // деление
+             -
+             list_of_synapses->at(synapse_index))
+                )
+    ; // + на -
+//if       (list_of_neurons->at(200)<0) goto d;
+//   std::cout << "list_of_neurons->at(200)= "  <<list_of_neurons->at(200)  <<std::endl;
+}
+
+//###########################################################################
+//###########################################################################
 //########################################################################################################
 /////////////   показываем что определила программа
     if 
@@ -172,6 +249,7 @@ list_of_neurons->at(200)=list_of_neurons->at(200)+  (list_of_neurons->at(neuron_
 
     {
         ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это 1.");
+        std::cout <<"Программа считает что это 1."   <<std::endl;
         Odin_Programmi=true;
         // std::cout << "Программа остановлена. Ошибки в форматах синапсов или нейронов."<< std::endl;  
     }
@@ -179,6 +257,7 @@ list_of_neurons->at(200)=list_of_neurons->at(200)+  (list_of_neurons->at(neuron_
                       if   (list_of_neurons->at(200)>=0)
                             {
         ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это не 1.");
+         std::cout <<"Программа считает что это не 1."   <<std::endl;
           Odin_Programmi=false;
     }
 //########################################################################################################
