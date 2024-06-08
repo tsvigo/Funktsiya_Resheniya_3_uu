@@ -24,7 +24,7 @@ namespace std {
     std::unique_ptr<std::vector<long long>> list_of_synapses = std::make_unique<std::vector<long long>>();
      std::unique_ptr<std::vector<long long>> list_of_neurons = std::make_unique<std::vector<long long>>();
 
-QString  Nazvaniye_fayla_s_neyronami_i_signalom="";
+//QString  Nazvaniye_fayla_s_neyronami_i_signalom="";
 bool Odin_Uchitelia;
 bool Odin_Programmi;
 int var ;
@@ -59,14 +59,22 @@ Dialog::Dialog(QWidget *parent)
           qDebug() << "File does not exist!";
           return;
       }
-      if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-          qDebug() << "Failed to open the file!";
-          return;
+
+      if (file.isOpen()) {
+          qDebug() << "File was already open!";
+          file.close();
       }
+//      if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+//          qDebug() << "Failed to open the file!";
+//          return;
+//      }
     ///home/viktor/Загрузки/data/none/300/masshtab/black-white/1/neurons_and_signal.txt
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть файл!";
+      //  file.close();
+        return;
            }
+
 
     // Создание текстового потока для чтения из файла
     QTextStream in(&file);
@@ -77,14 +85,14 @@ Dialog::Dialog(QWidget *parent)
         if (ok) {
             list_of_neurons->push_back(value);
         } else {
-//            qDebug() << "Не удалось преобразовать строку в число:" << line;
+          qDebug() << "Не удалось преобразовать строку в число:" << line;
         }
          if (ok) {
-//        qDebug() << "Преобразование в long long прошло успешно:";
-//        qDebug() << "Значение:" << value;
+   //  qDebug() << "Преобразование в long long прошло успешно:";
+   //   qDebug() << "Значение:" << value;
     } else {
-//        qDebug() << "Ошибка преобразования в long long:";
-//        qDebug() << "Строка не является числовой, или значение выходит за пределы long long";
+      qDebug() << "Ошибка преобразования в long long:";
+     qDebug() << "Строка не является числовой, или значение выходит за пределы long long";
           chislo_oshibok_neyronov++;
     }
     }
@@ -93,7 +101,7 @@ Dialog::Dialog(QWidget *parent)
       std::cout << "конец чтения нейронов в вектор"<< std::endl;  
    //     std::cout << "//########################################################################################################"<< std::endl;
         std::cout << "число ошибок форматов нейронов = "<< chislo_oshibok_neyronov<< std::endl; 
-                std::cout << "//########################################################################################################"<< std::endl;   
+    std::cout << "//########################################################################################################"<< std::endl;
 //########################################################################################################
  // Вывод содержимого вектора
 //    for (size_t i = 0; i < list_of_neurons->size(); ++i) {
@@ -261,7 +269,7 @@ synapse_index < 10100
         (list_of_neurons->at(200)<0)
 
     {
-        ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это 1.");
+    //    ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это 1.");
         std::cout <<"Программа считает что это 1."   <<std::endl;
         Odin_Programmi=true;
         // std::cout << "Программа остановлена. Ошибки в форматах синапсов или нейронов."<< std::endl;  
@@ -269,7 +277,7 @@ synapse_index < 10100
                   //         else
                       if   (list_of_neurons->at(200)>=0)
                             {
-        ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это не 1.");
+    //    ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это не 1.");
          std::cout <<"Программа считает что это не 1."   <<std::endl;
           Odin_Programmi=false;
     }
