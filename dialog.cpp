@@ -40,17 +40,30 @@ Dialog::Dialog(QWidget *parent)
 //########################################################################################################   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Открываем файл для решения
 // Диалог открытия файла
-   if (Nazvaniye_fayla_s_neyronami_i_signalom=="")
-   {
-Nazvaniye_fayla_s_neyronami_i_signalom = QFileDialog::getOpenFileName(this,
-              tr("Open txt"), "/home/viktor/Загрузки/data/none/300/masshtab/black-white/", tr("Txt Files (*.txt)"));
-   }           
+//   if (Nazvaniye_fayla_s_neyronami_i_signalom=="")
+//   {
+//Nazvaniye_fayla_s_neyronami_i_signalom = QFileDialog::getOpenFileName(this,
+//              tr("Open txt"), "/home/viktor/Загрузки/data/none/300/masshtab/black-white/", tr("Txt Files (*.txt)"));
+//   }
 //########################################################################################################
 // читаем нейроны в вектор
  // Открытие файла для чтения
  int chislo_oshibok_neyronov=0;
      std::cout << "читаем нейроны в вектор"<< std::endl;  
-    QFile file(Nazvaniye_fayla_s_neyronami_i_signalom);
+   // QFile file(Nazvaniye_fayla_s_neyronami_i_signalom);
+      QFile file(
+            //      "home/viktor/Загрузки/data/none/300/masshtab/black-white/1/neurons_and_signal.txt"
+                  "/home/viktor/neurons_and_signal.txt"
+                  );
+      if (!file.exists()) {
+          qDebug() << "File does not exist!";
+          return;
+      }
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+          qDebug() << "Failed to open the file!";
+          return;
+      }
+    ///home/viktor/Загрузки/data/none/300/masshtab/black-white/1/neurons_and_signal.txt
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть файл!";
            }
@@ -78,7 +91,7 @@ Nazvaniye_fayla_s_neyronami_i_signalom = QFileDialog::getOpenFileName(this,
     // Закрытие файла
     file.close();
       std::cout << "конец чтения нейронов в вектор"<< std::endl;  
-        std::cout << "//########################################################################################################"<< std::endl;  
+   //     std::cout << "//########################################################################################################"<< std::endl;
         std::cout << "число ошибок форматов нейронов = "<< chislo_oshibok_neyronov<< std::endl; 
                 std::cout << "//########################################################################################################"<< std::endl;   
 //########################################################################################################
@@ -87,7 +100,7 @@ Nazvaniye_fayla_s_neyronami_i_signalom = QFileDialog::getOpenFileName(this,
 //        std::cout << "Element " << i << ": " << list_of_neurons->at(i) << std::endl;
 //    }
 //########################################################################################################
-///#################### считываем синасы из файла в вектор #########################################################
+///#################### считываем синапсы из файла в вектор #########################################################
  // Открытие файла для чтения
  int chislo_oshibok_sinapsov=0;
    std::cout << "читаем синапсы в вектор"<< std::endl;  
@@ -122,7 +135,7 @@ Nazvaniye_fayla_s_neyronami_i_signalom = QFileDialog::getOpenFileName(this,
     // Закрытие файла
     file2.close();
        std::cout << "конец чтения синапсов в вектор"<< std::endl;  
-               std::cout << "//########################################################################################################"<< std::endl;  
+         //      std::cout << "//########################################################################################################"<< std::endl;
            std::cout << "число ошибок форматов синапсов = "<< chislo_oshibok_sinapsov<< std::endl;  
                    std::cout << "//########################################################################################################"<< std::endl;  
 //########################################################################################################
@@ -180,7 +193,7 @@ if (chislo_oshibok_sinapsov!=0 || chislo_oshibok_neyronov!=0) // если ест
 //    }
 //###########################################################################//###########################################################################
 //###########################################################################//###########################################################################
-// проверка
+// проверка - решение
 for ( var = 100;              // первый for
 var < 200
 
