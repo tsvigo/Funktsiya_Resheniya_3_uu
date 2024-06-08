@@ -69,7 +69,8 @@ Dialog::Dialog(QWidget *parent)
 //          return;
 //      }
     ///home/viktor/Загрузки/data/none/300/masshtab/black-white/1/neurons_and_signal.txt
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (!file.open(QIODevice::ReadOnly// | QIODevice::Text
+                   )) {
         qDebug() << "Не удалось открыть файл!";
       //  file.close();
         return;
@@ -78,26 +79,57 @@ Dialog::Dialog(QWidget *parent)
 
     // Создание текстового потока для чтения из файла
     QTextStream in(&file);
-    while (!in.atEnd()) {
+//###########################################################################
+//    while (!in.atEnd()) {
+//        QString line = in.readLine();
+//        bool ok;
+//        long long value = line.toLongLong(&ok);
+//        if (ok) {
+//            list_of_neurons->push_back(value);
+//        } else {
+//          qDebug() << "Не удалось преобразовать строку в число:" << line;
+//        }
+//         if (ok) {
+//   //  qDebug() << "Преобразование в long long прошло успешно:";
+//   //   qDebug() << "Значение:" << value;
+//    } else {
+//      qDebug() << "Ошибка преобразования в long long:";
+//     qDebug() << "Строка не является числовой, или значение выходит за пределы long long";
+//          chislo_oshibok_neyronov++;
+//    }
+//    }
+//    // Закрытие файла
+//    file.close();
+//###########################################################################
+
+    // Читаем первые 201 строку из файла
+    int lineCount = 0;
+    while (lineCount < 201 && !in.atEnd()) {
         QString line = in.readLine();
-        bool ok;
-        long long value = line.toLongLong(&ok);
-        if (ok) {
-            list_of_neurons->push_back(value);
-        } else {
-          qDebug() << "Не удалось преобразовать строку в число:" << line;
+        if (line.trimmed().isEmpty()) {
+            std::cerr << "Line " << (lineCount + 1) << " is empty, skipping." << std::endl;
+            continue;  // Пропускаем пустые строки
         }
-         if (ok) {
-   //  qDebug() << "Преобразование в long long прошло успешно:";
-   //   qDebug() << "Значение:" << value;
-    } else {
-      qDebug() << "Ошибка преобразования в long long:";
-     qDebug() << "Строка не является числовой, или значение выходит за пределы long long";
-          chislo_oshibok_neyronov++;
+
+        bool ok;
+        long long number = line.toLongLong(&ok);
+        if (ok) {
+            list_of_neurons->push_back(number);
+            ++lineCount;  // Увеличиваем счетчик только при успешной конвертации
+        } else {
+            std::cerr << "Failed to convert line " << (lineCount + 1) << " to number: " << qPrintable(line) << std::endl;
+        }
     }
-    }
-    // Закрытие файла
+
+    // Закрываем файл
     file.close();
+
+    // Проверка, что удалось прочитать ровно 201 непустую строку
+    if (lineCount != 201) {
+        std::cerr << "Error: Only " << lineCount << " valid lines were read from the file." << std::endl;
+     //   return 1;
+    }
+//###########################################################################
       std::cout << "конец чтения нейронов в вектор"<< std::endl;  
    //     std::cout << "//########################################################################################################"<< std::endl;
         std::cout << "число ошибок форматов нейронов = "<< chislo_oshibok_neyronov<< std::endl; 
@@ -120,28 +152,59 @@ Dialog::Dialog(QWidget *parent)
 
     // Создание текстового потока для чтения из файла
     QTextStream in2(&file2);
-    while (!in2.atEnd()) {
+//###########################################################################
+//    while (!in2.atEnd()) {
+//        QString line = in2.readLine();
+//        bool ok;
+//        long long value = line.toLongLong(&ok);
+//        if (ok) {
+//            list_of_synapses->push_back(value);
+//        } else
+//        {
+////            qDebug() << "Не удалось преобразовать строку в число:" << line;
+//        }
+//         if (ok) {
+////        qDebug() << "Преобразование в long long прошло успешно:";
+////        qDebug() << "Значение:" << value;
+//    } else {
+////        qDebug() << "Ошибка преобразования в long long:";
+//      qDebug() << "Строка не является числовой, или значение выходит за пределы long long: "<< line ;
+//          chislo_oshibok_sinapsov++;
+//    }
+
+//    }
+//    // Закрытие файла
+//    file2.close();
+////###########################################################################
+
+    // Читаем первые 10105 строк из файла
+    int lineCount2 = 0;
+    while (lineCount2 < 10105 && !in2.atEnd()) {
         QString line = in2.readLine();
-        bool ok;
-        long long value = line.toLongLong(&ok);
-        if (ok) {
-            list_of_synapses->push_back(value);
-        } else 
-        {
-//            qDebug() << "Не удалось преобразовать строку в число:" << line;
+        if (line.trimmed().isEmpty()) {
+            std::cerr << "Line " << (lineCount2 + 1) << " is empty, skipping." << std::endl;
+            continue;  // Пропускаем пустые строки
         }
-         if (ok) {
-//        qDebug() << "Преобразование в long long прошло успешно:";
-//        qDebug() << "Значение:" << value;
-    } else {
-//        qDebug() << "Ошибка преобразования в long long:";
-      qDebug() << "Строка не является числовой, или значение выходит за пределы long long: "<< line ;
-          chislo_oshibok_sinapsov++;
+
+        bool ok;
+        long long number = line.toLongLong(&ok);
+        if (ok) {
+            list_of_neurons->push_back(number);
+            ++lineCount2;  // Увеличиваем счетчик только при успешной конвертации
+        } else {
+            std::cerr << "Failed to convert line " << (lineCount2 + 1) << " to number: " << qPrintable(line) << std::endl;
+        }
     }
 
-    }
-    // Закрытие файла
+    // Закрываем файл
     file2.close();
+
+    // Проверка, что удалось прочитать ровно 201 непустую строку
+    if (lineCount2 != 10105) {
+        std::cerr << "Error: Only " << lineCount2 << " valid lines were read from the file." << std::endl;
+      //  return 1;
+    }
+/////###########################################################################
        std::cout << "конец чтения синапсов в вектор"<< std::endl;  
          //      std::cout << "//########################################################################################################"<< std::endl;
            std::cout << "число ошибок форматов синапсов = "<< chislo_oshibok_sinapsov<< std::endl;  
@@ -216,8 +279,9 @@ var < 200
 
     { // // ошибка сегментации
 
-
-    if (neuron_index < 200)
+ //if (synapse_index>10100 )
+    if (neuron_index < 200//&& synapse_index<200
+            )
 
         list_of_neurons->at(var)
 //###########################################################################
