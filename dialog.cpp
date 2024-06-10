@@ -44,7 +44,7 @@ Dialog::Dialog(QWidget *parent)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Открываем файл для решения
     // Запускаем диалог выбора файла при старте приложения
 QString fileName2 = QFileDialog::getOpenFileName(this, tr("Open Text File"),
-                        "/home/viktor/Загрузки/data/none/300/masshtab/black-white/",
+ "/mnt/6017d124-d970-486e-b68f-59b516dd0511/risunki_Stability_Matrix/chars74k_png_Fnt_Sample1_black-white/300/txt/",
  tr("Text Files (*.txt);;All Files (*)"));
     if (!fileName2.isEmpty()) {
     ;;  //  QMessageBox::information(this, tr("File Selected"), tr("You selected:\n%1").arg(fileName2));
