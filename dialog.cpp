@@ -141,23 +141,23 @@ QString fileName2 = QFileDialog::getOpenFileName(this, tr("Open Text File"),
   std::cout << "//########################################################################################################"<< std::endl;
 //########################################################################################################
   /////////////   показываем что определила программа
-      if
-        //  ( variable_error <=0)
-          (list_of_neurons->at(200)<0)
+//      if
+//        //  ( variable_error <=0)
+//          (list_of_neurons->at(200)<0)
 
-      {
-          ui->label->setText("Программа считает что это 1.");
-        std::cout << "list_of_neurons->at(200) = "<< list_of_neurons->at(200)<< std::endl;
-         // Odin_Programmi=true;
-           //  goto d;
-      }
-                             else {
-          ui->label->setText("Программа считает что это не 1.");
-          std::cout << "list_of_neurons->at(200) = "<< list_of_neurons->at(200)<< std::endl;
-     //     goto d;
-          //  Odin_Programmi=false;
+//      {
+//          ui->label->setText("Программа считает что это 1.");
+//        std::cout << "list_of_neurons->at(200) = "<< list_of_neurons->at(200)<< std::endl;
+//         // Odin_Programmi=true;
+//           //  goto d;
+//      }
+//                             else {
+//          ui->label->setText("Программа считает что это не 1.");
+//          std::cout << "list_of_neurons->at(200) = "<< list_of_neurons->at(200)<< std::endl;
+//     //     goto d;
+//          //  Odin_Programmi=false;
 
-      }
+//      }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //########################################################################################################
 //########################################################################################################             
@@ -234,7 +234,7 @@ synapse_index < 10100
         (list_of_neurons->at(200)<0)
 
     {
-    //    ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это 1.");
+    ui->label->setText("Программа считает что это 1.");
         std::cout <<"Программа считает что это 1."   <<std::endl;
         Odin_Programmi=true;
         // std::cout << "Программа остановлена. Ошибки в форматах синапсов или нейронов."<< std::endl;  
@@ -242,7 +242,7 @@ synapse_index < 10100
                   //         else
                       if   (list_of_neurons->at(200)>=0)
                             {
-    //    ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это не 1.");
+      ui->label->setText("Программа считает что это не 1.");
          std::cout <<"Программа считает что это не 1."   <<std::endl;
           Odin_Programmi=false;
     }
