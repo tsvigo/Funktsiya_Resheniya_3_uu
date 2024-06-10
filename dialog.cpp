@@ -42,6 +42,15 @@ Dialog::Dialog(QWidget *parent)
     std::cout << "Funktsiya_Resheniya_3_uu"<< std::endl;  
 //########################################################################################################   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Открываем файл для решения
+    // Запускаем диалог выбора файла при старте приложения
+QString fileName2 = QFileDialog::getOpenFileName(this, tr("Open Text File"),
+                        "/home/viktor/Загрузки/data/none/300/masshtab/black-white/",
+ tr("Text Files (*.txt);;All Files (*)"));
+    if (!fileName2.isEmpty()) {
+    ;;  //  QMessageBox::information(this, tr("File Selected"), tr("You selected:\n%1").arg(fileName2));
+    } else {
+    ;;  //  QMessageBox::information(this, tr("No File Selected"), tr("You did not select any file."));
+    }
 
 //########################################################################################################
 // читаем нейроны в вектор
@@ -51,7 +60,8 @@ Dialog::Dialog(QWidget *parent)
    // QFile file(Nazvaniye_fayla_s_neyronami_i_signalom);
       QFile file(
             //      "home/viktor/Загрузки/data/none/300/masshtab/black-white/1/neurons_and_signal.txt"
-                  "/home/viktor/neurons_and_signal.txt"
+                //  "/home/viktor/neurons_and_signal.txt"
+                  fileName2
                   );
       if (!file.exists()) {
           qDebug() << "File does not exist!";
