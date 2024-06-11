@@ -43,14 +43,14 @@ Dialog::Dialog(QWidget *parent)
 //########################################################################################################   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Открываем файл для решения
     // Запускаем диалог выбора файла при старте приложения
-QString fileName2 = QFileDialog::getOpenFileName(this, tr("Open Text File"),
- "/mnt/6017d124-d970-486e-b68f-59b516dd0511/risunki_Stability_Matrix/chars74k_png_Fnt_Sample1_black-white/300/txt/",
- tr("Text Files (*.txt);;All Files (*)"));
-    if (!fileName2.isEmpty()) {
-    ;;  //  QMessageBox::information(this, tr("File Selected"), tr("You selected:\n%1").arg(fileName2));
-    } else {
-    ;;  //  QMessageBox::information(this, tr("No File Selected"), tr("You did not select any file."));
-    }
+//QString fileName2 = QFileDialog::getOpenFileName(this, tr("Open Text File"),
+// "/mnt/6017d124-d970-486e-b68f-59b516dd0511/risunki_Stability_Matrix/chars74k_png_Fnt_Sample1_black-white/300/txt/",
+// tr("Text Files (*.txt);;All Files (*)"));
+//    if (!fileName2.isEmpty()) {
+//    ;;  //  QMessageBox::information(this, tr("File Selected"), tr("You selected:\n%1").arg(fileName2));
+//    } else {
+//    ;;  //  QMessageBox::information(this, tr("No File Selected"), tr("You did not select any file."));
+//    }
 
 //########################################################################################################
 // читаем нейроны в вектор
@@ -61,7 +61,8 @@ QString fileName2 = QFileDialog::getOpenFileName(this, tr("Open Text File"),
       QFile file(
             //      "home/viktor/Загрузки/data/none/300/masshtab/black-white/1/neurons_and_signal.txt"
                 //  "/home/viktor/neurons_and_signal.txt"
-                  fileName2
+                 // fileName2
+"/mnt/6017d124-d970-486e-b68f-59b516dd0511/risunki_Stability_Matrix/chars74k_png_Fnt_Sample1_black-white/300/txt/1/neurons_and_signal.txt"
                   );
       if (!file.exists()) {
           qDebug() << "File does not exist!";
