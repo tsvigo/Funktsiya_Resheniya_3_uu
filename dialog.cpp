@@ -3,7 +3,6 @@
 #include <QFileDialog>
 //########################################################################################################
 #include <vector>
-#include <iostream>
 
 #include <QCoreApplication>
 #include <QFile>
@@ -169,7 +168,6 @@ Dialog::Dialog(QWidget *parent)
       // если программа тут считает то 200 нейрон получается другой
 for ( var = 100;              // первый for
 var < 200
-
  ; ++var) // This is the range of neurons
 
 {
